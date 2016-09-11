@@ -1,7 +1,7 @@
 
 function main() {
-    this.ID = Mathlab.uid();
-    this.label = null;
+  this.ID = Mathlab.uid();
+  this.label = null;
 }
 
 main.prototype = {

@@ -1,9 +1,32 @@
 
 const objBit = require('./bit')
 const objBinary = require('./binary')
+const objDecimal = require('./decimal')
 
 main = () => {
   this.binaryLength = 0
+}
+
+/*|||||||||||||||||||||||||||||||||||||||||*/
+/*   UPDATE UPDATE UPDATE UPDATE UPDATE    */
+/*|||||||||||||||||||||||||||||||||||||||||*/
+
+main.update = {}
+
+main.update.binaryFromDecimal = (decimal) => {
+  const binary = decimal.binary.get()
+  const padding = binary.padding.get()
+  const binaryString = this.toBin(decimal.get(), padding)
+  const bitArray = this.convert.bitArray(binaryString)
+  binary.set(bitArray)
+}
+
+main.update.decimalFromBinary = (binary) => {
+  const decimal = binary.decimal.get()
+  const bitArray = binary.get()
+  const bitString = bitArray.join('')
+  const decimalValue = this.toDec(bitString)
+  decimal.set(decimalValue)
 }
 
 /*|||||||||||||||||||||||||||||||||||||||||*/
@@ -23,12 +46,19 @@ main.convert.binaryArray = (decimalArray) => {
   return binaryArray
 }
 
-main.convert.toBinary = (decimal) => {
+main.convert.binary = (decimal) => {
   const maxDecimal = decimal.maxDecimal()
   const padding = this.calculate.padding(maxDecimal)
   const binaryString = this.toBin(decimal.get(), padding)
-  const binary = this.convert.bitArray(binaryString)
-  return new objBinary(binary, padding, decimal)
+  const bitArray = this.convert.bitArray(binaryString)
+  return new objBinary(bitArray, padding, decimal)
+}
+
+main.convert.decimal = (dacimalValue, maxDecimal, binary = undefined) => {
+  const decimal = new objDecimal(dacimalValue, maxDecimal)
+  binary = binary !== undefined ? binary : this.convert.binary(decimal)
+  decimal.binary.set(binary)
+  return decimal
 }
 
 main.convert.bitArray = (binaryString) => {

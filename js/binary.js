@@ -25,4 +25,10 @@ main.decimal.set = (value) => {
   this.decimal = value
 }
 
+main.update = {}
+
+main.update.fromDecimal = () => {
+  return mathLab.update.binaryFromDecimal(this.decimal)
+}
+
 module.exports = main

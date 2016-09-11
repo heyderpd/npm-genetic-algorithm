@@ -1,1 +1,1 @@
-module.exports = require('./js/fast-genetic');
+module.exports = require('./js/main');

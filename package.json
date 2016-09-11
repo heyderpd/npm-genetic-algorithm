@@ -1,0 +1,24 @@
+{
+  "name": "fast-genetic",
+  "version": "0.0.1",
+  "description": "fast genetic algorithm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heyderpd/npm-genetic-algorithm.git"
+  },
+  "keywords": [
+    "fast",
+    "genetic",
+    "algorithm"
+  ],
+  "author": "NPM html-parse-regex <heyderpd@gmail.com> (http://heyderpd.github.io)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heyderpd/npm-genetic-algorithm/issues"
+  },
+  "homepage": "https://github.com/heyderpd/npm-genetic-algorithm#readme"
+}

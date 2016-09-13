@@ -66,7 +66,7 @@ main.create.bitArray = (binaryString) => {
   return bitArray
 }
 
-main.create.binary = (decimal) => {
+main.create.binaryFromDecimal = (decimal) => {
   const maxDecimal = decimal.maxDecimal()
   const padding = this.calculate.padding(maxDecimal)
   const binaryString = this.toBin(decimal.get(), padding)

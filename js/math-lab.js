@@ -29,11 +29,89 @@ main.update.decimalFromBinary = (binary) => {
   decimal.set(decimalValue)
 }
 
+main.update.Array_binaryFromDecimal = (binaryArray) => {
+  this.doEach(binaryArray,
+    binary => {
+      this.update.binaryFromDecimal(binary)
+    })
+}
+
+main.update.Array_decimalFromBinary = (decimalArray) => {
+  this.doEach(decimalArray,
+    decimal => {
+      this.update.decimalFromBinary(decimal)
+    })
+}
+
+/*|||||||||||||||||||||||||||||||||||||||||*/
+/* CREATE  CREATE  CREATE  CREATE  CREATE  */
+/*|||||||||||||||||||||||||||||||||||||||||*/
+
+main.create = {}
+
+main.create.bit = (bitValue, padding) => {
+  if (bitValue !== 0 || bitValue !== 1) {
+    throw new Error("[fast-genetic] binary <> [1, 0]")
+  }
+  return new objBit(bitValue)
+}
+
+main.create.bitArray = (binaryString) => {
+  let bitArray = []
+  this.doEach(binaryString,
+    bit => {
+      const bitOjb = new objBit(bit)
+      bitArray.push(bitOjb)
+    })
+  return bitArray
+}
+
+main.create.binary = (decimal) => {
+  const maxDecimal = decimal.maxDecimal()
+  const padding = this.calculate.padding(maxDecimal)
+  const binaryString = this.toBin(decimal.get(), padding)
+  const bitArray = this.convert.bitArray(binaryString)
+  return new objBinary(bitArray, padding, decimal)
+}
+
+main.create.decimal = (dacimalValue, maxDecimal, binary = undefined) => {
+  const decimal = new objDecimal(dacimalValue, maxDecimal)
+  binary = binary !== undefined ? binary : this.convert.binary(decimal)
+  decimal.binary.set(binary)
+  return decimal
+}
+
 /*|||||||||||||||||||||||||||||||||||||||||*/
 /* CONVERT CONVERT CONVERT CONVERT CONVERT */
 /*|||||||||||||||||||||||||||||||||||||||||*/
 
 main.convert = {}
+
+main.convert.decimalMaxArray = (decimalValueArray) => {
+  let decimalMaxArray = []
+  this.doEach(decimalValueArray,
+    decimalMax => {
+      const item = main.create.decimal(decimalMax)
+      decimalMaxArray.push(item)
+    })
+  return decimalMaxArray
+}
+
+main.convert.decimalArray = (valuesArray, decimalMaxArray) => {
+  if (valuesArray.length !== decimalMaxArray.length) {
+    throw new Error("[fast-genetic] valuesArray.length <> decimalMaxArray.length")
+  }
+  let decimalArray = []
+  this.doEachKey(decimalMaxArray,
+    (key, decimalMax) => {
+      const item = {
+        value : valuesArray[key],
+        decimal : decimalMax
+      }
+      decimalArray.push(item)
+    })
+  return decimalArray
+}
 
 main.convert.binaryArray = (decimalArray) => {
   let binaryArray = []
@@ -44,38 +122,6 @@ main.convert.binaryArray = (decimalArray) => {
       binaryArray.push(binary)
     })
   return binaryArray
-}
-
-main.convert.binary = (decimal) => {
-  const maxDecimal = decimal.maxDecimal()
-  const padding = this.calculate.padding(maxDecimal)
-  const binaryString = this.toBin(decimal.get(), padding)
-  const bitArray = this.convert.bitArray(binaryString)
-  return new objBinary(bitArray, padding, decimal)
-}
-
-main.convert.decimal = (dacimalValue, maxDecimal, binary = undefined) => {
-  const decimal = new objDecimal(dacimalValue, maxDecimal)
-  binary = binary !== undefined ? binary : this.convert.binary(decimal)
-  decimal.binary.set(binary)
-  return decimal
-}
-
-main.convert.bitArray = (binaryString) => {
-  let bitArray = []
-  this.doEach(binaryString,
-    bit => {
-      const bitOjb = new objBit(bit)
-      bitArray.push(bitOjb)
-    })
-  return bitArray
-}
-
-main.convert.bit = (bitValue, padding) => {
-  if (bitValue !== 0 || bitValue !== 1) {
-    throw new Error("[fast-genetic] binary <> [1, 0]")
-  }
-  return new objBit(bitValue)
 }
 
 /*|||||||||||||||||||||||||||||||||||||||||*/

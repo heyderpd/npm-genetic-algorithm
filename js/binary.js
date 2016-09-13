@@ -1,4 +1,6 @@
 
+const mathLab = require('./math-lab')
+
 function main(value, padding, decimal) {
   this.value = value,
   this.padding = padding,

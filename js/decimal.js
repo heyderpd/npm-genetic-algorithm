@@ -1,7 +1,7 @@
 
 const mathLab = require('./math-lab')
 
-function main(value, maxDecimal, binary = null) {
+function main(value, maxDecimal = 0, binary = null) {
   this.value = value,
   this.maxDecimal = maxDecimal,
   this.binary = binary

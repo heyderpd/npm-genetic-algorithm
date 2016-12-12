@@ -19,7 +19,7 @@ class range {
         break
 
       default:
-        throw new Error('unexpected object type');
+        throw new Error('unexpected object type')
     }
     if (value > this.max) {
       value = this.max

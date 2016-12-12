@@ -34,7 +34,7 @@ class vetor {
         this.spread(this.simple)
 
       default:
-        throw new Error('unexpected object type');
+        throw new Error('unexpected object type')
     }
   }
 
@@ -59,7 +59,7 @@ class vetor {
         break
 
       default:
-        throw new Error('unexpected object type');
+        throw new Error('unexpected object type')
     }
   }
 }

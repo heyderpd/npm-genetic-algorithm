@@ -4,22 +4,22 @@ const citizen = require('./citizen')
 class population {
   constructor (ranges, values) {
     if (ranges[0].constructor.name === 'range') {
-      throw new Error('unexpected object type');
+      throw new Error('unexpected object type')
     }
 
     this.citizens = []
 
     switch(values.constructor.name) {
       case 'Number':
-        createPopulation(values)
+        this.createPopulation(values)
         break
 
       case 'Array':
-        revivePopulation(values)
+        this.revivePopulation(values)
         break
 
       default:
-        throw new Error('unexpected object type');
+        throw new Error('unexpected object type')
     }
   }
 
@@ -45,7 +45,7 @@ class population {
               new citizen(ranges, values)))
 
     } else {
-      throw new Error('unexpected value');
+      throw new Error('unexpected value')
     }
   }
 }

@@ -9,7 +9,7 @@ class binary {
         break
 
       default:
-        throw new Error('unexpected object type');
+        throw new Error('unexpected object type')
     }
   }
 }

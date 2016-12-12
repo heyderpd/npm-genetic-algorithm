@@ -1,5 +1,5 @@
 
-const mathLab = require('./math-lab')
+const vetor = require('./../basic/vetor')
 
 class chromosome {
   constructor (values, ranges) {
@@ -7,10 +7,11 @@ class chromosome {
       throw new Error('ranges.length not equal values.length');
     }
 
-    this.vetors = values.map((value, i) =>{
-      range = ranges[i]
-      return new vetor(value, range)
-    })
+    this.vetors = values.map(
+      (value, i) =>
+        new vetor(
+          value,
+          ranges[i]))
   }
 }
 

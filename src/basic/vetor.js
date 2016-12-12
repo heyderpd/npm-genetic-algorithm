@@ -1,5 +1,5 @@
 
-const mathLab = require('./math-lab')
+const mathLab = require('./../lib/math-lab')
 
 class vetor {
   constructor (value, range) {

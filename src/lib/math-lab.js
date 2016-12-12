@@ -1,5 +1,14 @@
 
+tendentious = require('random-tendentious')
+
 class mathLab {
+
+  random = (min, max) => {
+    return tendentious({
+      l: [
+        min,
+        max]})
+  }
 
   fromSimple = {
     toInt: number => parseInt(number),

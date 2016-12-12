@@ -2,14 +2,15 @@
 const chromosome = require('./chromosome')
 
 class citizen {
-  constructor (ranges, values = null) {
+  constructor (ranges, judge, values = null) {
     if (ranges[0].constructor.name === 'range') {
       throw new Error('unexpected object type')
     }
 
-    this.chromosome = null
+    this.judge = judge
     this.ranges = ranges
     this.fitness = undefined
+    this.chromosome = null
 
     if (values === null) {
       values = ranges

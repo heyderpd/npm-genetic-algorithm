@@ -5,12 +5,14 @@ const simple = require('./../basic/simple')
 const range = require('./../basic/range')
 
 class generation {
-  constructor (ranges, limit, population) {
-    this.ranges = ranges
+  constructor (population, limit) {
+    this.population = population
     this.limit = limit
     this.year = 0
-    this.population = population
 
+    while (this.limit-- > 0) {
+      this.population.beOld()
+    }
   }
 }
 

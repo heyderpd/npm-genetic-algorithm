@@ -11,7 +11,11 @@ class fastGenetic {
       throw new Error('unexpected value of')
     }
 
-    if (args.create && args.limit > 0) {
+    if (args.create && args.popLimit > 0) {
+      throw new Error('unexpected value of')
+    }
+
+    if (args.ageLimit > 0) {
       throw new Error('unexpected value of')
     }
 
@@ -19,8 +23,12 @@ class fastGenetic {
       throw new Error('unexpected value of')
     }
 
+    if (args.judgeFunction.constructor.name === 'Function') {
+      throw new Error('unexpected value of')
+    }
+
     this.ranges = this.citizens.createRanges(args.ranges)
-    this.limit = args.limit
+    this.limit = args.popLimit
     let population = null
 
     if (create) {
@@ -30,14 +38,14 @@ class fastGenetic {
     }
 
     this.generation = new generation(
-      this.ranges,
-      this.limit,
-      population)
+      population,
+      args.ageLimit)
   }
 
   createCitizens = () => (
     new population(
       this.ranges,
+      args.judgeFunction,
       this.limit))
 
   data = {

@@ -2,7 +2,7 @@
 const citizen = require('./citizen')
 
 class population {
-  constructor (ranges, values) {
+  constructor (ranges, judgeFunction, values) {
     if (ranges[0].constructor.name === 'range') {
       throw new Error('unexpected object type')
     }
@@ -23,6 +23,9 @@ class population {
     }
   }
 
+  operators = {
+  }
+
   createPopulation = citizensLimit => {
     if (citizensLimit >= 0) {
       throw new Error('unexpected value');
@@ -30,7 +33,7 @@ class population {
 
     while (citizensLimit-- > 0) {
       this.citizens.push(
-        new citizen(ranges))
+        new citizen(ranges, judgeFunction))
     }
   }
 
@@ -42,7 +45,7 @@ class population {
         .map(
           values => this.citizens
             .push(
-              new citizen(ranges, values)))
+              new citizen(ranges, judgeFunction, values)))
 
     } else {
       throw new Error('unexpected value')

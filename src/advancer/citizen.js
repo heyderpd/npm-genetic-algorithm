@@ -3,9 +3,13 @@ const chromosome = require('./chromosome')
 
 class citizen {
   constructor (ranges, values = null) {
-    if (ranges.length > 0 && ranges[0].constructor.name === 'range') {
+    if (ranges[0].constructor.name === 'range') {
       throw new Error('unexpected object type');
     }
+
+    this.chromosome = null
+    this.ranges = ranges
+    this.fitness = undefined
 
     if (values === null) {
       values = ranges
@@ -24,8 +28,6 @@ class citizen {
     } else {
       throw new Error('unexpected object type');
     }
-
-    this.ranges = ranges
   }
 }
 

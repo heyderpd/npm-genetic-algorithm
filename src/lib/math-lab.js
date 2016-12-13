@@ -54,6 +54,13 @@ class mathLab {
     }
   }
 
+  citizens = {
+    fossilise: citizen => citizen.chromosome.extract('fossilise'),
+
+    unFossilise: citizen => citizen.map(
+      value => new simple(value))
+  }
+
 }
 
 export default mathLab

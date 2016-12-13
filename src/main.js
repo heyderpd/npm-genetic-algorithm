@@ -1,5 +1,6 @@
 
 const fs = require('fs-extra')
+const mathLab = require('./lib/math-lab')
 const generation = require('./control/generation')
 const population = require('./advancer/population')
 const simple = require('./basic/simple')
@@ -73,30 +74,14 @@ class fastGenetic {
   }
 
   citizens = {
-    fossilise: () => {
-      return this.population
-        .map(
-          citizen => (
-            citizen.chromosome
-              .map(
-                vetor => vetor.simple.get())))
-    },
+    fossilise: () => this.population.map(mathLab.citizens.fossilise),
 
-    unFossilise: (fossils) => {
-      return fossils
-        .map(
-          citizen => (
-            citizen
-              .map(
-                value => new simple(value))))
-    },
+    unFossilise: fossils => fossils.map(mathLab.citizens.unFossilise),
 
     createRanges: () => {
       return this.ranges
         .map(
-          x => new range(
-            x[0],
-            x[1]))
+          x => new range(x[0], x[1]))
     }
   }
 }

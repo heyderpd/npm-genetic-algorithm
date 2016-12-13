@@ -9,7 +9,9 @@ class generation {
     this.population = population
     this.limit = limit
     this.year = 0
+  }
 
+  execute = () => {
     while (this.limit-- > 0) {
       this.population.beOld()
     }

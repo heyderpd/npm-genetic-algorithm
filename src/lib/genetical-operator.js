@@ -1,11 +1,8 @@
 
-function main() {
-  this.ID = Mathlab.uid();
-  this.label = null;
+class operator {
+  shuffle = (sampleA, sampleB) => {
+    return sampleA
+  }
 }
 
-main.prototype = {
-  Aa: function () {}
-}
-
-module.exports = main
+export default operator

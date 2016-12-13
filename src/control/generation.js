@@ -5,22 +5,33 @@ const simple = require('./../basic/simple')
 const range = require('./../basic/range')
 
 class generation {
-  constructor (population, limit, surviver) {
+  constructor (population, ageLimit, popLimit, surviver) {
     this.population = population
     this.surviver = surviver
-    this.limit = limit
+    this.limit = ageLimit
+    this.pop = popLimit
     this.year = 0
   }
 
   execute = () => {
     this.population.order()
-    while (this.limit-- > 0) {
+    let limit = this.limit
+    while (limit-- > 0) {
       groups = this.population.split(this.surviver)
       this.population.populate(groups.bests)
       this.population.order()
-      groups = this.population.split(this.limit)
+      groups = this.population.split(this.pop)
       this.population.kill(groups.worsts)
+      console.log(`generation ${limit}`)
     }
+  }
+
+  resume = () => {
+    const best = this.population[0]
+    console.log('best fitness:', best.fitness)
+    this.population
+      .map(
+        citizen => console.log(citizen))
   }
 }
 

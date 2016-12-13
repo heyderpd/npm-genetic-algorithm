@@ -45,7 +45,13 @@ class fastGenetic {
     this.generation = new generation(
       population,
       args.ageLimit,
+      args.popLimit,
       args.surviver)
+  }
+
+  execute = () => {
+    this.generation.execute()
+    this.generation.resume()
   }
 
   createCitizens = () => (

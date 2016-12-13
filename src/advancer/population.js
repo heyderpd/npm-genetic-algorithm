@@ -61,7 +61,7 @@ class population {
       })})
     },
 
-    order: list => {
+    order: () => {
       const order = []
       const disorder = this.citizens
       let length = disorder.length, pos = 0, best = disorder[0]

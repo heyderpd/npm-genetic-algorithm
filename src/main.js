@@ -16,6 +16,10 @@ class fastGenetic {
       throw new Error('unexpected value of')
     }
 
+    if (args.create && args.surviver > 1 && args.surviver < args.popLimit) {
+      throw new Error('unexpected value of')
+    }
+
     if (args.ageLimit > 0) {
       throw new Error('unexpected value of')
     }
@@ -40,7 +44,8 @@ class fastGenetic {
 
     this.generation = new generation(
       population,
-      args.ageLimit)
+      args.ageLimit,
+      args.surviver)
   }
 
   createCitizens = () => (

@@ -1,0 +1,24 @@
+{
+  "license": "MIT",
+  "name": "fast-genetic",
+  "version": "0.5.0",
+  "description": "fast genetic algorithm",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [
+     "fast",
+    "genetic",
+    "algorithm",
+    "simple"
+  ],
+  "author": "NPM fast-genetic <heyderpd@gmail.com> (http://heyderpd.github.io)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heyderpd/npm-genetic-algorithm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/heyderpd/npm-genetic-algorithm/issues"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}

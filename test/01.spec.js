@@ -16,7 +16,10 @@ describe('genetic', function() {
     const FG = new fastGenetic({
       create: true,
       ranges: ranges,
-      ageLimit: 50,
+      /*ageLimit: 2,
+      popLimit: 5,
+      surviver: 3,*/
+      ageLimit: 15,
       popLimit: 10,
       surviver: 4,
       judgeFunction: judgeFunction,

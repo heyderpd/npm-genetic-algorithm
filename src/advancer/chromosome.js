@@ -36,7 +36,7 @@ class chromosome {
     if (part === 'fossilise') {
       return this.vetors
         .map(
-          vetor => vetor[part].get())
+          vetor => vetor.simple.get())
     } else {
       return this.vetors
         .map(

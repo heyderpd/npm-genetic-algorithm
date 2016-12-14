@@ -26,20 +26,22 @@ class population {
   }
 
   split(split) {
+    this.clear()
     return {
       bests: this.citizens.slice(0, split),
       worsts: this.citizens.slice(split)
     }
   }
 
-  kill(list) {
-    list
+  selection(groups) {
+    groups.worsts
       .map(
         wanted => {
           const post = this.find(wanted)
           this.citizens[post].die()
           delete this.citizens[post]
         })
+    this.citizens = groups.bests
   }
 
   find(wanted) {
@@ -54,43 +56,58 @@ class population {
     return wanted
   }
 
+  findFathers(wanteds, fathers) {
+    let found = false
+    fathers
+      .map(
+        parent => {
+          if ( (wanteds.f === parent.f && wanteds.m === parent.m)
+            || (wanteds.f === parent.m && wanteds.m === parent.f) ) {
+            found = true
+          }
+      })
+    return found
+  }
+
   populate(list) {
+    const fathers = []
     list.map( father => {
       list.map( mother => {
         if (father.chromosome !== mother.chromosome) {
-          const binary = mother.birth(father)
-          this.citizens.push(
-            new citizen(this.ranges, this.judgeFunction, binary))
-        }
+          const parent = {
+            f: father,
+            m: mother
+          }
+          if (!this.findFathers(parent, fathers)) {
+            fathers.push(parent)
+            const binary = mother.birth(father)
+            this.citizens.push(
+              new citizen(this.ranges, this.judgeFunction, binary))
+        }}
     })})
   }
 
   order() {
-    const disorder = this.citizens
-    let length = disorder.length, pos = 0, best = disorder.pop()
-    const order = Array(best)
-    console.log('--', disorder.length, best) // <<-
-    while (length) {
-      disorder.map(
-        (citizen, i) => {
-          if (citizen.fitness > best.fitness) {
-            pos = i
-            best = citizen
-          }
-        })
-      order.push(best)
-      delete disorder[pos]
-      length -= 1
-    }
-    return order
+    this.clear()
+    this.citizens = this.citizens.sort((a, b) => {
+      return a.fitness > b.fitness
+    })
   }
-  
+
+  clear() {
+    const polluted = this.citizens, clear = []
+    polluted
+      .map(
+        item => clear.push(item))
+    this.citizens = clear
+  }
+
   createPopulation(citizensLimit, judgeFunction) {
     if (citizensLimit < 0) {
       throw new Error('unexpected value');
     }
 
-    while (citizensLimit-- > 0) {
+    while (citizensLimit-- >= 0) {
       this.citizens.push(
         new citizen(this.ranges, judgeFunction))
     }

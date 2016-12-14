@@ -21,17 +21,19 @@ class generation {
       this.population.populate(groups.bests)
       this.population.order()
       groups = this.population.split(this.pop)
-      this.population.kill(groups.worsts)
-      console.log(`generation ${limit}`)
+      this.population.selection(groups)
+      console.log(`generation ${this.limit -limit}º`)
     }
+    this.population.order()
   }
 
   resume() {
-    const best = this.population.pop()
-    console.log('best fitness:', best.fitness)
-    this.population
+    const best = this.population.citizens.pop()
+    this.population.citizens
       .map(
-        citizen => console.log(citizen))
+        citizen => console.log(citizen.fitness, citizen.chromosome.extract('fossilise')))
+    console.log('best fitness:', best.fitness, 'citizens:', this.population.citizens.length)
+    console.log('params:', best.chromosome.extract('fossilise'))
   }
 }
 

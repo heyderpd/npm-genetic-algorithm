@@ -1,6 +1,6 @@
 
-const operator = require('./../lib/genetical-operator')
-const vetor = require('./../basic/vetor')
+import operator from './../lib/genetical-operator'
+import vetor from './../basic/vetor'
 
 class chromosome {
   constructor (values, ranges) {
@@ -15,13 +15,13 @@ class chromosome {
           ranges[i]))
   }
 
-  mix = chromosome => {
+  mix(chromosome) {
     const sampleA = this.extract('binary')
     const sampleB = chromosome.extract('binary')
     return operator.shuffle(sampleA, sampleB)
   }
 
-  extract = part => {
+  extract(part) {
     switch(part) {
       case 'fossilise':
       case 'simple':

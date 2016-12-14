@@ -4,13 +4,14 @@ class simple {
     this.value = value
   }
 
-  get = () => {
+  get() {
     return this.value
   }
 
-  set = (value) => {
+  set(value) {
     this.value = value
   }
 }
+
 
 export default simple

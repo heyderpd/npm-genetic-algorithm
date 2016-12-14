@@ -1,26 +1,25 @@
 
-tendentious = require('random-tendentious')
+import tendentious from 'random-tendentious'
 
-class mathLab {
-
-  random = (min, max) => {
+const mathLab = {
+  random: (min, max) => {
     return tendentious({
       l: [
         min,
         max]})
-  }
+  },
 
-  fromSimple = {
+  fromSimple: {
     toInt: number => parseInt(number),
 
     toDecimal: number => parseInt(number, 2),
 
-    toBinary: number => afcoma.toString(2),
+    toBinary: number => number.toString(2),
 
     createNumber: simple => {
-      const splited = String(simple)
+      const splited = String(simple.get())
         .split('.')
-        .map(x => this.fromSimple.toInt(x))
+        .map(x => mathLab.fromSimple.toInt(x))
       const beforeComma = splited[0]
       const afterComma  = splited[1]
       return {
@@ -28,39 +27,38 @@ class mathLab {
         after:  afterComma
       }
     }
-  }
+  },
 
-  fromNumber = {
-    createSimple: number => this.fromSimple.toInt(`${number.before}.${number.after}`),
+  fromNumber: {
+    createSimple: number => mathLab.fromSimple.toInt(`${number.before}.${number.after}`),
 
     createBinary: number => {
-      const beforeComma = this.fromSimple.toBinary(number.before)
-      const afterComma  = this.fromSimple.toBinary(number.after)
+      const beforeComma = mathLab.fromSimple.toBinary(number.before)
+      const afterComma  = mathLab.fromSimple.toBinary(number.after)
       return {
         before: beforeComma,
         after:  afterComma
       }
     }
-  }
+  },
 
-  fromBinary = {
+  fromBinary: {
     createNumber: binary => {
-      const beforeComma = this.fromSimple.toDecimal(binary.before)
-      const afterComma  = this.fromSimple.toDecimal(binary.after)
+      const beforeComma = mathLab.fromSimple.toDecimal(binary.before)
+      const afterComma  = mathLab.fromSimple.toDecimal(binary.after)
       return {
         before: beforeComma,
         after:  afterComma
       }
     }
-  }
+  },
 
-  citizens = {
+  citizens: {
     fossilise: citizen => citizen.chromosome.extract('fossilise'),
 
     unFossilise: citizen => citizen.map(
       value => new simple(value))
   }
-
 }
 
 export default mathLab

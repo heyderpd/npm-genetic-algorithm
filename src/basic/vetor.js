@@ -1,5 +1,5 @@
 
-const mathLab = require('./../lib/math-lab')
+import mathLab from './../lib/math-lab'
 
 class vetor {
   constructor (value, range) {
@@ -32,13 +32,14 @@ class vetor {
       case 'simple':
         this.simple = this.range.limit(value)
         this.spread(this.simple)
+        break
 
       default:
         throw new Error('unexpected object type')
     }
   }
-
-  spread = (value) => {
+  
+  spread(value) {
     switch(value.constructor.name) {
       case 'simple':
         this.simple = value

@@ -1,9 +1,9 @@
 
-const chromosome = require('./chromosome')
+import chromosome from './chromosome'
 
 class citizen {
   constructor (ranges, judge, values = null) {
-    if (ranges[0].constructor.name === 'range') {
+    if (ranges[0].constructor.name !== 'range') {
       throw new Error('unexpected object type')
     }
 
@@ -26,20 +26,27 @@ class citizen {
 
     if (values[0].constructor.name === 'simple') {
       this.chromosome = new chromosome(values, ranges)
-      this.fitness = getFitness()
+      this.fitness = this.getFitness()
     } else {
       throw new Error('unexpected object type')
     }
   }
 
-  birth = father => this.chromosome.mix(father.chromosome)
-
-  getFitness = () => {
-    const simple = this.chromosome.extract('simple')
-    return this.judge(simple)
+  birth(father) {
+    return this.chromosome.mix(father.chromosome)
   }
 
-  die = () => {
+  getFitness() {
+    let sum = 0
+    const simples = this.chromosome.extract('simple')
+    simples
+      .map(simple => {
+        sum += this.judge(simple.get())
+      })
+    return sum /simples.length
+  }
+
+  die() {
     this.judge = null
     this.ranges = null
     this.fitness = null

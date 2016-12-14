@@ -1,6 +1,6 @@
 
-const mathLab = require('./../lib/math-lab')
-const simple = require('./simple')
+import mathLab from './../lib/math-lab'
+import simple from './simple'
 
 class range {
   constructor (min, max) {
@@ -8,8 +8,8 @@ class range {
     this.max = max
     this.random = mathLab.random(min, max)
   }
-
-  limit = value => {
+  
+  limit(value) {
     switch(value.constructor.name) {
       case 'simple':
         value = value.get()
@@ -30,9 +30,10 @@ class range {
     return new simple(value)
   }
 
-  new = () =>
-    this.limit(
+  new() {
+    return this.limit(
       this.random())
+  }
 }
 
 export default range

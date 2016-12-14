@@ -2,8 +2,8 @@
 
 const assert = require('assert')
 
-// const countingSort = require('../src/main')
-const fastGenetic = require('../npm/index')
+import fastGenetic from '../src/main'
+// import fastGenetic from '../npm/index'
 
 // start test
 describe('genetic', function() {
@@ -13,7 +13,7 @@ describe('genetic', function() {
   const judgeFunction = x => x /8
 
   it('simple', function() {
-    fastGenetic({
+    const FG = new fastGenetic({
       create: true,
       ranges: ranges,
       ageLimit: 50,
@@ -21,6 +21,6 @@ describe('genetic', function() {
       surviver: 4,
       judgeFunction: judgeFunction,
     })
-    fastGenetic.execute()
+    FG.execute()
   })
 })

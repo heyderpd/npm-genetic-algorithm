@@ -1,5 +1,5 @@
 
-const mathLab = require('./../lib/math-lab')
+import mathLab from './../lib/math-lab'
 
 class binary {
   constructor (value) {

@@ -1,8 +1,8 @@
 
-const fs = require('fs-extra')
-const population = require('./../advancer/population')
-const simple = require('./../basic/simple')
-const range = require('./../basic/range')
+import fs from 'fs-extra'
+import population from './../advancer/population'
+import simple from './../basic/simple'
+import range from './../basic/range'
 
 class generation {
   constructor (population, ageLimit, popLimit, surviver) {
@@ -13,9 +13,9 @@ class generation {
     this.year = 0
   }
 
-  execute = () => {
+  execute() {
     this.population.order()
-    let limit = this.limit
+    let groups, limit = this.limit
     while (limit-- > 0) {
       groups = this.population.split(this.surviver)
       this.population.populate(groups.bests)
@@ -26,8 +26,8 @@ class generation {
     }
   }
 
-  resume = () => {
-    const best = this.population[0]
+  resume() {
+    const best = this.population.pop()
     console.log('best fitness:', best.fitness)
     this.population
       .map(

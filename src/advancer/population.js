@@ -27,9 +27,10 @@ class population {
 
   split(split) {
     this.clear()
+    split = this.citizens.length -split
     return {
-      bests: this.citizens.slice(0, split),
-      worsts: this.citizens.slice(split)
+      worsts: this.citizens.slice(0, split),
+      bests: this.citizens.slice(split)
     }
   }
 
@@ -89,9 +90,8 @@ class population {
 
   order() {
     this.clear()
-    this.citizens = this.citizens.sort((a, b) => {
-      return a.fitness > b.fitness
-    })
+    this.citizens = this.citizens.sort(
+      (a, b) => a.fitness > b.fitness ? 1 : -1)
   }
 
   clear() {

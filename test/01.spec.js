@@ -24,6 +24,8 @@ describe('genetic', function() {
       surviver: 4,
       judgeFunction: judgeFunction,
     })
-    FG.execute()
+    assert.equal(
+      FG.execute()  > 95,
+      true)
   })
 })

@@ -57,7 +57,7 @@ class fastGenetic {
   
   execute() {
     this.generation.execute()
-    this.generation.resume()
+    return this.generation.resume()
   }
 
   createCitizens(judgeFunction) {

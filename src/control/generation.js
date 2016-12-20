@@ -14,6 +14,7 @@ class generation {
   }
 
   execute() {
+    console.log(`generations`)
     this.population.order()
     let groups, limit = this.limit
     while (limit-- > 0) {
@@ -22,7 +23,7 @@ class generation {
       this.population.order()
       groups = this.population.split(this.pop)
       this.population.selection(groups)
-      console.log(`generation ${this.limit -limit}º`)
+      console.log(`${this.limit -limit}º`)
     }
     this.population.order()
   }
@@ -33,7 +34,9 @@ class generation {
       .map(
         citizen => console.log(citizen.fitness, citizen.chromosome.extract('fossilise')))
     console.log('best fitness:', best.fitness, 'citizens:', this.population.citizens.length)
-    console.log('params:', best.chromosome.extract('fossilise'))
+    const bestFossil = best.chromosome.extract('fossilise')
+    console.log('params:', bestFossil)
+    return bestFossil[0]
   }
 }
 

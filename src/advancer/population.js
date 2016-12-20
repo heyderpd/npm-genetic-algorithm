@@ -72,11 +72,8 @@ class population {
   }
 
   clear() {
-    const polluted = this.citizens, clear = []
-    polluted
-      .map(
-        item => clear.push(item))
-    this.citizens = clear
+    this.citizens = this.citizens
+      .filter(item => !!item)
   }
 
   createPopulation(citizensLimit, judgeFunction) {

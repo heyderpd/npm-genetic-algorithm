@@ -7,6 +7,7 @@ class citizen {
       throw new Error('unexpected object type')
     }
 
+    this.couple = []
     this.judge = judge
     this.ranges = ranges
     this.fitness = undefined

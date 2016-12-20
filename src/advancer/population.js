@@ -36,51 +36,28 @@ class population {
 
   selection(groups) {
     groups.worsts
-      .map(
-        wanted => {
-          const post = this.find(wanted)
-          this.citizens[post].die()
-          delete this.citizens[post]
-        })
+      .map(wanted => wanted.die())
     this.citizens = groups.bests
   }
 
-  find(wanted) {
-    let found = false
-    this.citizens
-      .map(
-        (citizen, i) => {
-          if (!found && wanted.chromosome === citizen.chromosome) {
-            found = true
-            wanted = i
-      }})
-    return wanted
-  }
-
-  findFathers(wanteds, fathers) {
-    let found = false
-    fathers
-      .map(
-        parent => {
-          if ( (wanteds.f === parent.f && wanteds.m === parent.m)
-            || (wanteds.f === parent.m && wanteds.m === parent.f) ) {
-            found = true
-          }
-      })
-    return found
+  isNewCouple(father, mother) {
+    const couple = father
+      .couple.filter(
+        pair => pair.chromosome === mother.chromosome)
+      // .length > 0
+    console.log(couple)
+    return couple.length === 0
   }
 
   populate(list) {
-    const fathers = []
-    list.map( father => {
-      list.map( mother => {
+    list.map(father => father.couple = [])
+    list.map(father => {
+      list.map(mother => {
         if (father.chromosome !== mother.chromosome) {
-          const parent = {
-            f: father,
-            m: mother
-          }
-          if (!this.findFathers(parent, fathers)) {
-            fathers.push(parent)
+          if (this.isNewCouple(father, mother)) {
+            mother.couple.push(father)
+            father.couple.push(mother)
+
             const binary = mother.birth(father)
             this.citizens.push(
               new citizen(this.ranges, this.judgeFunction, binary))

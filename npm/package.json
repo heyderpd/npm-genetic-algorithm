@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "name": "fast-genetic",
-  "version": "0.5.0",
+  "version": "0.7.0",
   "description": "fast genetic algorithm",
   "main": "index.js",
   "scripts": {},
@@ -20,5 +20,8 @@
     "url": "https://github.com/heyderpd/npm-genetic-algorithm/issues"
   },
   "devDependencies": {},
-  "dependencies": {}
+  "dependencies": {
+    "fs-extra": "^1.0.0",
+    "random-tendentious": "^1.0.2"
+  }
 }

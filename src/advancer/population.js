@@ -41,12 +41,10 @@ class population {
   }
 
   isNewCouple(father, mother) {
-    const couple = father
-      .couple.filter(
+    return father.couple
+      .filter(
         pair => pair.chromosome === mother.chromosome)
-      // .length > 0
-    console.log(couple)
-    return couple.length === 0
+      .length === 0
   }
 
   populate(list) {

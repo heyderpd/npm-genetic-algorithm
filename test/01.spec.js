@@ -2,8 +2,8 @@
 
 const assert = require('assert')
 
-import fastGenetic from '../src/main'
-// import fastGenetic from '../npm/index'
+// import fastGenetic from '../src/main'
+import fastGenetic from '../npm/index'
 
 // start test
 describe('genetic', function() {
@@ -14,15 +14,13 @@ describe('genetic', function() {
 
   it('simple', function() {
     const FG = new fastGenetic({
+      debug: true,
       create: true,
       ranges: ranges,
-      /*ageLimit: 2,
-      popLimit: 5,
-      surviver: 3,*/
-      ageLimit: 15,
-      popLimit: 10,
+      ageLimit: 30,
+      popLimit: 12,
       surviver: 4,
-      judgeFunction: judgeFunction,
+      judgeFunction: judgeFunction
     })
     assert.equal(
       FG.execute()  > 95,

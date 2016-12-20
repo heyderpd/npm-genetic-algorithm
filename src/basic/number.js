@@ -3,18 +3,23 @@ import mathLab from './../lib/math-lab'
 
 class number {
   constructor (value) {
+    let num
+
     switch(value.constructor.name) {
       case 'simple':
-        this = mathLab.fromSimple.createNumber(value)
+        num = mathLab.fromSimple.createNumber(value)
         break
 
       case 'binary':
-        this = mathLab.fromBinary.createNumber(value)
+        num = mathLab.fromBinary.createNumber(value)
         break
 
       default:
         throw new Error('unexpected object type')
     }
+
+    this.before = num.before
+    this.after = num.after
   }
 }
 

@@ -30,12 +30,13 @@ class generation {
 
   resume() {
     const best = this.population.citizens.pop()
+    console.log('fitness\t\tsolution')
     this.population.citizens
       .map(
         citizen => console.log(citizen.fitness, citizen.chromosome.extract('fossilise')))
     console.log('best fitness:', best.fitness, 'citizens:', this.population.citizens.length)
     const bestFossil = best.chromosome.extract('fossilise')
-    console.log('params:', bestFossil)
+    console.log('solution:', bestFossil)
     return bestFossil[0]
   }
 }

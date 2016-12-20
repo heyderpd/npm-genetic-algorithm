@@ -8,6 +8,12 @@ import range from './basic/range'
 
 class fastGenetic {
   constructor (args = {}) {
+    
+    this.crono = false
+    if (args.debug) {
+      this.crono = +new Date()
+    }
+    
     if (!args.create && !args.load) {
       throw new Error('unexpected value of')
     }
@@ -57,6 +63,10 @@ class fastGenetic {
   
   execute() {
     this.generation.execute()
+    if (!!this.crono) {
+      this.crono = (+new Date() -this.crono) /1000
+      console.log(`ALL iteration's in ${this.crono} ms.`)
+    }
     return this.generation.resume()
   }
 

@@ -36,7 +36,10 @@ class population {
 
   selection(groups) {
     groups.worsts
-      .map(wanted => wanted.die())
+      .map((wanted, i) => {
+        wanted.die()
+        delete groups.worsts[i]
+      })
     this.citizens = groups.bests
   }
 

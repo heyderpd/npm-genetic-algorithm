@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "name": "fast-genetic",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "fast genetic algorithm",
   "main": "index.js",
   "scripts": {},

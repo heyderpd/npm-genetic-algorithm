@@ -39,19 +39,16 @@ class citizen {
 
   getFitness() {
     let sum = 0
-    const simples = this.chromosome.extract('simple')
-    simples
-      .map(simple => {
-        sum += this.judge(simple.get())
-      })
-    return sum /simples.length
+    const fossilise = this.chromosome.extract('fossilise')
+    return this.judge(fossilise)
   }
 
   die() {
-    this.judge = null
-    this.ranges = null
-    this.fitness = null
-    this.chromosome = null
+    delete this.couple
+    delete this.judge
+    delete this.ranges
+    delete this.fitness
+    delete this.chromosome
   }
 }
 

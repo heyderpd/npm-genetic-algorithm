@@ -8,40 +8,40 @@ import range from './basic/range'
 
 class fastGenetic {
   constructor (args = {}) {
-    
+
     this.crono = false
     if (args.debug) {
       this.crono = +new Date()
     }
-    
+
     if (!args.create && !args.load) {
-      throw new Error('unexpected value of')
+      throw new Error(`unexpected value of "create", [${JSON.stringify(create)}]`)
     }
 
     if (args.create) {
       if (args.popLimit < 2) {
-        throw new Error('unexpected value of')
+        throw new Error(`unexpected value of "popLimit", [${JSON.stringify(popLimit)}]`)
       }
 
       if (args.surviver < 2) {
-        throw new Error('unexpected value of')
+        throw new Error(`unexpected value of "surviver", [${JSON.stringify(surviver)}]`)
       }
 
       if (args.surviver >= args.popLimit) {
-        throw new Error('unexpected value of')
+        throw new Error(`unexpected value of "surviver", [${JSON.stringify(surviver)}]`)
       }
     }
 
     if (args.ageLimit < 2) {
-      throw new Error('unexpected value of')
+      throw new Error(`unexpected value of "ageLimit", [${JSON.stringify(ageLimit)}]`)
     }
 
     if (args.ranges && args.ranges.constructor.name !== 'Array') {
-      throw new Error('unexpected value of')
+      throw new Error(`unexpected value of "ranges", [${JSON.stringify(ranges)}]`)
     }
 
     if (args.judgeFunction && args.judgeFunction.constructor.name !== 'Function') {
-      throw new Error('unexpected value of')
+      throw new Error(`unexpected value of "judgeFunction", [${JSON.stringify(judgeFunction)}]`)
     }
 
     this.ranges = this.createRanges(args.ranges)
@@ -60,7 +60,7 @@ class fastGenetic {
       args.popLimit,
       args.surviver)
   }
-  
+
   execute() {
     this.generation.execute()
     if (!!this.crono) {

@@ -1,6 +1,6 @@
 import assert from 'assert'
 
-import fastGenetic from '../src/index'
+import fastGenetic from '../dist/index'
 
 // start test
 describe('genetic', function() {
@@ -35,7 +35,7 @@ describe('genetic', function() {
     })
     const res = FG.execute()
     assert.equal(
-      89.9 < res && res < 91,
+      90 < res && res < 91,
       true)
   })
 })
